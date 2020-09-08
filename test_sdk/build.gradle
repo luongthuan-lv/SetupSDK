@@ -1,5 +1,37 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
+ext {
+    bintrayRepo = 'maven' // Name of the Bintray repo you created
+    bintrayName = 'com.luongthuan.utility:test_sdk' // Bintray package name
+
+    publishedGroupId = 'com.luongthuan.utility' // Group ID of the SDK which will be added in implementation line of gradle
+    artifact = 'test_sdk' // Artifact ID of the SDK which will be added in implementation line of gradle
+    libraryVersion = '0.0.1' // Version of the library you created in Bintray
+
+    libraryName = 'Test Sdk' // It is generally the module name
+    libraryDescription = 'Test Sdk'// Small description of the library
+
+    siteUrl = 'https://github.com/mohitrajput987/android-utility'
+    gitUrl = 'https://github.com/mohitrajput987/android-utility.git'
+
+    developerId = 'akai'
+    developerName = 'Luong Van Thuan'
+    developerEmail = 'luongthuan2k@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+    //Bintray Credentials
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    bintrayUsername = properties.getProperty('BINTRAY_USERNAME')
+    bintrayUserOrg = properties.getProperty('BINTRAY_ORG')
+    bintrayApiKey = properties.getProperty('BINTRAY_API_KEY')
+}
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -25,6 +57,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
